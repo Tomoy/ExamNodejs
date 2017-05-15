@@ -1,0 +1,14 @@
+{
+    "usuarios": [
+        {
+            "nombre": "Tomas",
+            "password": "dev1234",
+            "email": "tomas@gmail.com"
+        },
+        {
+            "nombre": "admin",
+            "password": "admin1234",
+            "email": "admin@nodepop.com"
+        }
+    ]
+}

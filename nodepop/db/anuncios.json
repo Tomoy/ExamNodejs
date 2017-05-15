@@ -1,0 +1,65 @@
+{
+    "anuncios": [
+        {
+            "nombre": "Bicicleta",
+            "esVenta": true,
+            "precio": 230.15,
+            "urlFoto": "bici.jpg",
+            "tags": [
+                "lifestyle",
+                "motor"
+            ]
+        },
+        {
+            "nombre": "Volkswagen Golf 2014",
+            "esVenta": true,
+            "precio": 12999.00,
+            "urlFoto": "vwgolf.jpg",
+            "tags": [
+                "lifestyle",
+                "work",
+                "motor"
+            ]
+        },
+        {
+            "nombre": "Macbook Air early 2014",
+            "esVenta": true,
+            "precio": 850.00,
+            "urlFoto": "macbookair.jpg",
+            "tags": [
+                "lifestyle",
+                "work"
+            ]
+        },
+        {
+            "nombre": "iPhone 3GS",
+            "esVenta": false,
+            "precio": 50.00,
+            "urlFoto": "iphone.png",
+            "tags": [
+                "lifestyle",
+                "mobile"
+            ]
+        },
+        {
+            "nombre": "iPhone 5S",
+            "esVenta": true,
+            "precio": 200.00,
+            "urlFoto": "iphone5s.png",
+            "tags": [
+                "lifestyle",
+                "mobile"
+            ]
+        },
+        {
+            "nombre": "iPhone 7",
+            "esVenta": false,
+            "precio": 600.00,
+            "urlFoto": "iphone7.png",
+            "tags": [
+                "lifestyle",
+                "mobile"
+            ]
+        }
+    ]
+}
