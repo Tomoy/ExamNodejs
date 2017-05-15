@@ -4,7 +4,7 @@
             "nombre": "Bicicleta",
             "esVenta": true,
             "precio": 230.15,
-            "urlFoto": "bici.jpg",
+            "urlFoto": "bici.png",
             "tags": [
                 "lifestyle",
                 "motor"
@@ -14,7 +14,7 @@
             "nombre": "Volkswagen Golf 2014",
             "esVenta": true,
             "precio": 12999.00,
-            "urlFoto": "vwgolf.jpg",
+            "urlFoto": "vwgolf.png",
             "tags": [
                 "lifestyle",
                 "work",
@@ -25,7 +25,7 @@
             "nombre": "Macbook Air early 2014",
             "esVenta": true,
             "precio": 850.00,
-            "urlFoto": "macbookair.jpg",
+            "urlFoto": "macbookair.png",
             "tags": [
                 "lifestyle",
                 "work"

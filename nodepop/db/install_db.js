@@ -32,6 +32,7 @@ mongoose.connection.once('open', () => {
 })
 
 function cargarData() {
+    
     leerArchivo("./db/anuncios.json", (err, data) => {
         if (err) {
             //Manejar error
