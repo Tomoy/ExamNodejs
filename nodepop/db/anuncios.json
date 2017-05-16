@@ -11,6 +11,24 @@
             ]
         },
         {
+            "nombre": "Mouse HP",
+            "esVenta": false,
+            "precio": 14.99,
+            "urlFoto": "mouse.png",
+            "tags": [
+                "work"
+            ]
+        },
+        {
+            "nombre": "Pendrive 16gb",
+            "esVenta": false,
+            "precio": 25.00,
+            "urlFoto": "pendrive.png",
+            "tags": [
+                "work"
+            ]
+        },
+        {
             "nombre": "Volkswagen Golf 2014",
             "esVenta": true,
             "precio": 12999.00,
