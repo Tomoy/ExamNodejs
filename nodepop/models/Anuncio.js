@@ -12,8 +12,9 @@ const anuncioSchema = mongoose.Schema({
 });
 
 //Método estático para listar los anuncios
-anuncioSchema.statics.list = function(filter, callback) {
-    const query = Anuncio.find(filter);
+anuncioSchema.statics.list = function(filtros, callback) {
+    console.log("Filtros: ", filtros);
+    const query = Anuncio.find(filtros);
     query.exec(callback);
 }
 
