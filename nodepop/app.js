@@ -7,6 +7,12 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+//Establezco la conexión de la base de datos
+require('./db/connectDb');
+//Incluyo mis modelos
+require('./models/Anuncio');
+require('./models/Usuario');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -20,6 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
+app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios.js'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

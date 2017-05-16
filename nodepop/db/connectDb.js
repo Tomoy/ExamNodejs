@@ -12,4 +12,9 @@ conn.on('error', err => {
     process.exit(1);  //Cierro la aplicación porque no puedo usar la app sin la db
 });
 
+//Listener pero solo una vez para logear solo la primera vez que se conecte
+mongoose.connection.once('open', () => {
+    console.log('Conectado a MongoDb.');
+})
+
 mongoose.connect('mongodb://localhost/nodepop')
