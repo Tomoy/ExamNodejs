@@ -11,6 +11,7 @@ const leerArchivo = require('./leerArchivo');
 const mongoose = require('mongoose');
 const Anuncio = mongoose.model('Anuncio');
 const Usuario = mongoose.model('Usuario');
+const sha256 = require('sha256');
 
 
 //Listener pero solo una vez para logear solo la primera vez que se conecte
@@ -63,6 +64,9 @@ function cargarData() {
         data.usuarios.forEach((value, index, array) => {
             //Creo objeto de tipo Usuario
             let usuario = new Usuario(value);
+
+            //Hasheo el password
+            usuario.password = sha256(usuario.password);
 
             //Lo guardo en la base de datos
             usuario.save((err, usuarioGuardado) => {

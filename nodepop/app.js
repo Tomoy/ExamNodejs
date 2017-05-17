@@ -9,6 +9,7 @@ var app = express();
 
 //Establezco la conexión de la base de datos
 require('./db/connectDb');
+
 //Incluyo mis modelos
 require('./models/Anuncio');
 require('./models/Usuario');

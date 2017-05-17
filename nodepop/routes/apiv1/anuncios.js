@@ -3,12 +3,13 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
+const auth = require('../../lib/auth_jwt')
 
 const Anuncio = mongoose.model('Anuncio');
 
 //Agregar autenticación
 
-router.get('/', (req, res, next) => {
+router.get('/',auth.ensureAuthenticated, (req, res, next) => {
 
     //Filtros
     const filtros = {}
