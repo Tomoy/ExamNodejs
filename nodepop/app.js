@@ -39,10 +39,25 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+//modulo para traducir los errores
+const trans = require('./lib/translate'); 
+
 // error handler
 app.use(function(err, req, res, next) {
+  let errorMsg = err.message;
+
+  //Si es un error custom y el lang fue enviado en las cabeceras, entonces lo traducimos y mandamos como mensaje de error
+  if (err.localizedKey) {
+    if (req.headers.lang) {
+      errorMsg = trans.translate(err.localizedKey, req.headers.lang);
+    } else {
+      errorMsg = "Falta enviar el lang en el header!";
+    }
+  }
+
   // set locals, only providing error in development
-  res.locals.message = err.message;
+  res.locals.message = errorMsg;
+  console.log("Error translated: ", errorMsg);
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page

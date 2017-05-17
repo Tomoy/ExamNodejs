@@ -6,8 +6,7 @@ require('./connectDb');
 require('../models/Anuncio');
 require('../models/Usuario');
 
-//const fs = require('fs');
-const leerArchivo = require('./leerArchivo');
+const leerArchivo = require('../lib/leerArchivo');
 const mongoose = require('mongoose');
 const Anuncio = mongoose.model('Anuncio');
 const Usuario = mongoose.model('Usuario');
@@ -19,7 +18,8 @@ mongoose.connection.once('open', () => {
     console.log('Conectado a MongoDb.');
     mongoose.connection.db.listCollections().toArray(function (err, names) {
         if (err) {
-            //Manejar error
+            //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
+            console.log('Error: ', err.message);
             return;
         }
         names.forEach((value, index, array) => {
@@ -36,7 +36,8 @@ function cargarData() {
     
     leerArchivo("./db/anuncios.json", (err, data) => {
         if (err) {
-            //Manejar error
+            //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
+            console.log('Error: ', err.message);
             return;
         }
 
@@ -47,7 +48,8 @@ function cargarData() {
             //Lo guardo en la base de datos
             anuncio.save((err, anuncioGuardado) => {
                 if (err) {
-                    //manejar el error;
+                    //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
+                    console.log('Error: ', err.message);
                     return;
                 }
                 console.log("Anuncio: ", anuncioGuardado, "guardado en la db con éxito");
@@ -57,7 +59,8 @@ function cargarData() {
 
     leerArchivo("./db/usuarios.json", (err, data) => {
         if (err) {
-            //Manejar error
+            //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
+            console.log('Error: ', err.message);
             return;
         }
 
@@ -71,7 +74,8 @@ function cargarData() {
             //Lo guardo en la base de datos
             usuario.save((err, usuarioGuardado) => {
                 if (err) {
-                    //manejar el error;
+                    //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
+                    console.log('Error: ', err.message);
                     return;
                 }
                 console.log("Usuario: ", usuarioGuardado, "guardado en la db con éxito");

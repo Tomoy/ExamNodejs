@@ -7,9 +7,7 @@ const auth = require('../../lib/auth_jwt')
 
 const Anuncio = mongoose.model('Anuncio');
 
-//Agregar autenticación
-
-router.get('/',auth.ensureAuthenticated, (req, res, next) => {
+router.get('/', auth.ensureAuthenticated, (req, res, next) => {
 
     //Filtros
     const filtros = {}
@@ -47,8 +45,7 @@ router.get('/',auth.ensureAuthenticated, (req, res, next) => {
 
     Anuncio.list(filtros,limit,start,sort, (err, anuncios) => {
         if (err) {
-            //manejar error
-            return;
+            next(err);
         }
         res.json({success: true, result: anuncios});
     });

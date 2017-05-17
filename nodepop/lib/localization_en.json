@@ -1,0 +1,10 @@
+{
+    "keys": {
+        "USER_NOT_FOUND": "User not found",
+        "WRONG_PASSWORD": "Wrong password",
+        "FIELD_MISSING": "Field missing, please check you send them all (nombre, password, email)",
+        "MISSING_TOKEN": "The token is missing in the query string / header",
+        "TOKEN_EXPIRED": "The token has expired, please log in again to renew it"
+
+    }
+}

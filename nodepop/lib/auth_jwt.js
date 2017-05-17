@@ -4,7 +4,7 @@ var jwt = require('jwt-simple');
 var moment = require('moment');  
 var conf = require('./conf');
 
-exports.ensureAuthenticated = function(req, res, next) {  
+exports.ensureAuthenticated = function (req, res, next) {
 
   var token = (req.body && req.body.token) || (req.query && req.query.token) || req.headers['x-access-token'];
 
@@ -13,34 +13,36 @@ exports.ensureAuthenticated = function(req, res, next) {
       var payload = jwt.decode(token, conf.TOKEN_SECRET);
 
       if (payload.exp <= moment().unix()) {
-        return res
-          .status(401)
-          .send({ message: "El token ha expirado" });
+        const err = new Error();
+        err.localizedKey = "TOKEN_EXPIRED";
+        err.status = 403;
+        next(err);
       }
 
       req.user = payload.sub;
       next();
-    } catch(err) {
-      return res
-        .status(403)
-        .send({ message: 'Error: ' + err.message});
+    } catch (err) {
+      err.status = 403;
+      next(err);
     }
   } else {
-    return res
-      .status(403)
-      .send({ message: "Tu petición no incluye el token" });
+    const err = new Error();
+    err.localizedKey = "MISSING_TOKEN";
+    err.status = 403;
+    next(err);
   }
 }
 
-function createToken(user) {
+exports.createToken = (user) => {
+
+  try {
     var payload = {
-        sub: user._id,
-        iat: moment().unix(),
-        exp: moment().add(14, "days").unix(),
+      sub: user._id,
+      iat: moment().unix(),
+      exp: moment().add(14, "days").unix(),
     };
-    console.log("token: ", conf.TOKEN_SECRET);
     return jwt.encode(payload, conf.TOKEN_SECRET); 
+  } catch (err) {
+    next(err);
+  }
 }
-
-exports.createToken = createToken;
-

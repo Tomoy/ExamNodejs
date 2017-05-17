@@ -1,0 +1,9 @@
+{
+    "keys": {
+            "USER_NOT_FOUND": "Usuario no encontrado",
+            "WRONG_PASSWORD": "Contraseña incorrecta",
+            "FIELD_MISSING": "Falta un campo, por favor corroborar que se enviaron todos(nombre, password, email)",
+            "MISSING_TOKEN": "No se encontró ningún token en la query string / header",
+            "TOKEN_EXPIRED": "El token ha caducado, por favor vuelva a logearse para renovarlo"
+        }
+}
