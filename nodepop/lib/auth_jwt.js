@@ -17,6 +17,7 @@ exports.ensureAuthenticated = function (req, res, next) {
                 err.localizedKey = "TOKEN_EXPIRED";
                 err.status = 403;
                 next(err);
+                return;
             }
 
             req.user = payload.sub;
