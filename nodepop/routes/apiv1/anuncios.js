@@ -8,7 +8,7 @@ const auth = require('../../lib/auth_jwt')
 const Anuncio = mongoose.model('Anuncio');
 
 router.get('/', auth.ensureAuthenticated, (req, res, next) => {
-    
+
     //Filtros
     const filtros = {}
     const tag = req.query.tag;
@@ -43,14 +43,14 @@ router.get('/', auth.ensureAuthenticated, (req, res, next) => {
     const limit = parseInt(req.query.limit);
     const start = parseInt(req.query.start);
     const sort = req.query.sort;
-    
+
     //IncludeTotal
     const includeTotal = req.query.includeTotal;
 
     const listAllPromise = Anuncio.list(filtros, limit, start, sort, req);
 
     let promises = [listAllPromise];
-    
+
     //Si el parámetro include total viene en la query y además es true, hago el otro request y lo agrego al promisall
     if (includeTotal && includeTotal == 'true') {
         const countPromise = Anuncio.count();
