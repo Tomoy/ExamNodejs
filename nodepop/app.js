@@ -44,8 +44,8 @@ const trans = require('./lib/translate');
 
 // error handler
 app.use(function(err, req, res, next) {
+  console.log("REsponse: ", err.status);
   let errorMsg = err.message;
-
   //Si es un error custom y el lang fue enviado en las cabeceras, entonces lo traducimos y mandamos como mensaje de error
   if (err.localizedKey) {
     if (req.headers.lang) {

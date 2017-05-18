@@ -3,20 +3,23 @@
 const fs = require('fs');
 
 
-function leerArchivo(rutaArchivo, callback) {
-    fs.readFile(rutaArchivo, (err, data) => {
-        if (err) {
-            callback(err);
-            return;
-        }
+function leerArchivo(rutaArchivo) {
+    
+    return new Promise((resolve, reject) => {
+        
+        fs.readFile(rutaArchivo, (err, data) => {
+            if (err) {
+                reject(err);
+            }
 
-        try {
-            //Parsear el contenido del json a Objeto
-            const response = JSON.parse(data);
-            callback(null, response);
-        } catch (error) {
-            callback(error);
-        }
+            try {
+                //Parsear el contenido del json a Objeto
+                const response = JSON.parse(data);
+                resolve(response);
+            } catch (error) {
+                reject(error);
+            }
+        });
     });
 }
 

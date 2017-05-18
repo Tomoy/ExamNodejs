@@ -34,13 +34,9 @@ mongoose.connection.once('open', () => {
 
 function cargarData() {
     
-    leerArchivo("./db/anuncios.json", (err, data) => {
-        if (err) {
-            //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
-            console.log('Error: ', err.message);
-            return;
-        }
-
+    const anunciosPromesa = leerArchivo('./db/anuncios.json');
+    anunciosPromesa.then((data) => {
+        
         data.anuncios.forEach((value, index, array) => {
             //Creo objeto de tipo Anuncio
             let anuncio = new Anuncio(value);
@@ -48,39 +44,35 @@ function cargarData() {
             //Lo guardo en la base de datos
             anuncio.save((err, anuncioGuardado) => {
                 if (err) {
-                    //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
-                    console.log('Error: ', err.message);
+                    console.log('Error: ', err.message); //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
                     return;
                 }
                 console.log("Anuncio: ", anuncioGuardado, "guardado en la db con éxito");
             });
         });
-    });
+    }).catch(err => {
+        console.log("Error: ", err.message);
+    })
 
-    leerArchivo("./db/usuarios.json", (err, data) => {
-        if (err) {
-            //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
-            console.log('Error: ', err.message);
-            return;
-        }
-
+    const usuariosPromesa = leerArchivo('./db/usuarios.json');
+    usuariosPromesa.then((data) => {
+        
         data.usuarios.forEach((value, index, array) => {
-            //Creo objeto de tipo Usuario
+            //Creo objeto de tipo Anuncio
             let usuario = new Usuario(value);
-
-            //Hasheo el password
-            usuario.password = sha256(usuario.password);
 
             //Lo guardo en la base de datos
             usuario.save((err, usuarioGuardado) => {
                 if (err) {
-                    //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
-                    console.log('Error: ', err.message);
+                    console.log('Error: ', err.message);  //Mando el error a la consola porque este script es ejecutado solo por consola para inicializar la db
+
                     return;
                 }
                 console.log("Usuario: ", usuarioGuardado, "guardado en la db con éxito");
             });
         });
-    });
+    }).catch(err => {
+        console.log("Error: ", err.message);
+    })
 }
 

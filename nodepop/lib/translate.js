@@ -4,24 +4,20 @@ const leerArchivo = require('./leerArchivo');
 var keys_en = {}
 var keys_es = {}
 
-leerArchivo("./lib/localization_en.json", (err, data) => {
-    if (err) {
-        console.log("Error: ", err.message);
-        return;
-    }
 
+const promesa_en = leerArchivo("./lib/localization_en.json");
+promesa_en.then((data) => {
     keys_en = data.keys;
+}).catch(err => {
+    console.log("Error: ", err.message);
 });
 
-leerArchivo("./lib/localization_es.json", (err, data) => {
-    if (err) {
-        console.log("Error: ", err.message);
-        return;
-    }
-
+const promesa_es = leerArchivo("./lib/localization_es.json");
+promesa_es.then((data) => {
     keys_es = data.keys;
-});
-
+}).catch(err => {
+    console.log("Error: ", err.message);
+})
 
 exports.translate = (key, lang) => {    
     let translatedResponse = '';
