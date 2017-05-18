@@ -11,8 +11,25 @@ const anuncioSchema = mongoose.Schema({
     tags: [String]
 });
 
+//Convierte la url relativa de la foto de los anuncios en url absoluta
+function setearUrlAbsoluta(anuncios, req) {
+
+    if (req) {
+        const fullUrl = req.protocol + '://' + req.get('host');
+
+        anuncios.forEach(function (anuncio) {
+            anuncio.urlFoto = fullUrl + '/images/anuncios/' + anuncio.urlFoto;
+        });
+
+        return anuncios;
+    } else {
+        return anuncios;
+    }
+
+}
+
 //Método estático para listar los anuncios
-anuncioSchema.statics.list = function (filtros, limit, start, sort) {
+anuncioSchema.statics.list = function (filtros, limit, start, sort, req) {
 
     return new Promise((resolve, reject) => {
         const query = Anuncio.find(filtros);
@@ -21,9 +38,10 @@ anuncioSchema.statics.list = function (filtros, limit, start, sort) {
         query.sort(sort);
         query.exec()
             .then(anuncios => {
+                anuncios = setearUrlAbsoluta(anuncios, req);
                 resolve(anuncios);
             })
-            .catch( err => {
+            .catch(err => {
                 reject(err);
             });
     });

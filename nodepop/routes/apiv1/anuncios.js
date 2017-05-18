@@ -44,7 +44,7 @@ router.get('/', auth.ensureAuthenticated, (req, res, next) => {
     const start = parseInt(req.query.start);
     const sort = req.query.sort;
 
-    Anuncio.list(filtros, limit, start, sort)
+    Anuncio.list(filtros, limit, start, sort, req)
         .then(anuncios => {
             res.json({ success: true, result: anuncios });
         })
