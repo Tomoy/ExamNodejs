@@ -3,10 +3,10 @@
 const fs = require('fs');
 
 
-function leerArchivo(rutaArchivo) {
-    
+function leerArchivo(rutaArchivo) {
+
     return new Promise((resolve, reject) => {
-        
+
         fs.readFile(rutaArchivo, (err, data) => {
             if (err) {
                 reject(err);

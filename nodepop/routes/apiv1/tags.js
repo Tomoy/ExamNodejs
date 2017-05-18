@@ -8,12 +8,12 @@ const auth = require('../../lib/auth_jwt')
 const Anuncio = mongoose.model('Anuncio');
 
 router.get('/', auth.ensureAuthenticated, (req, res, next) => {
-    Anuncio.listTags((err, uniqueTags) => {
-        if (err) {
+    Anuncio.listTags()
+        .then(uniqueTags => {
+            res.json({ success: true, result: uniqueTags });
+        }).catch(err => {
             next(err);
-        }
-        res.json({ success: true, result: uniqueTags });
-    });
+        });
 });
 
 module.exports = router;

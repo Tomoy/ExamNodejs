@@ -23,12 +23,11 @@ router.post('/', (req, res, next) => {
         usuario.password = sha256(usuario.password);
 
         //Lo guardo en la base de datos
-        usuario.save((err, usuarioGuardado) => {
-            if (err) {
-                next(err);
-            }
+        usuario.save().then(usuarioGuardado => {
             res.status(200)
                 .send({ token: service.createToken(usuarioGuardado) })
+        }).catch(err => {
+            next(err);
         });
     } else {
         const err = new Error();
@@ -39,12 +38,8 @@ router.post('/', (req, res, next) => {
 });
 
 router.post('/authenticate', (req, res, next) => {
-    Usuario.findOne({email:req.body.email}, (err, user) => {
-
-        if (err) {
-            next(err);
-        } else {
-
+    Usuario.findOne({ email: req.body.email })
+        .then(user => {
             if (user) {
                 //Hasheo la clave que viene en el request para que coincida con la hasheada en la db
                 let passwd = sha256(req.body.password);
@@ -59,14 +54,17 @@ router.post('/authenticate', (req, res, next) => {
                     err.status = 400;
                     next(err);
                 }
+
             } else {
                 const err = new Error("");
                 err.localizedKey = "USER_NOT_FOUND"
                 err.status = 404;
                 next(err);
             }
-        }
-    })
+
+        }).catch(err => {
+            next(err);
+        });
 })
 
 module.exports = router;
