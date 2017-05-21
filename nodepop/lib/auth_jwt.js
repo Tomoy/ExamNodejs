@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var jwt = require('jwt-simple');
 var moment = require('moment');
@@ -14,7 +14,7 @@ exports.ensureAuthenticated = function (req, res, next) {
 
             if (payload.exp <= moment().unix()) {
                 const err = new Error();
-                err.localizedKey = "TOKEN_EXPIRED";
+                err.localizedKey = 'TOKEN_EXPIRED';
                 err.status = 403;
                 next(err);
                 return;
@@ -28,11 +28,11 @@ exports.ensureAuthenticated = function (req, res, next) {
         }
     } else {
         const err = new Error();
-        err.localizedKey = "MISSING_TOKEN";
+        err.localizedKey = 'MISSING_TOKEN';
         err.status = 403;
         next(err);
     }
-}
+};
 
 exports.createToken = (user) => {
 
@@ -40,10 +40,10 @@ exports.createToken = (user) => {
         var payload = {
             sub: user._id,
             iat: moment().unix(),
-            exp: moment().add(14, "days").unix(),
+            exp: moment().add(14, 'days').unix(),
         };
         return jwt.encode(payload, conf.TOKEN_SECRET);
     } catch (err) {
-        next(err);
+        console.log('Error: ', err);
     }
-}
+};

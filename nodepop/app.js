@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -33,34 +32,32 @@ app.use('/apiv1/usuarios', require('./routes/apiv1/usuarios.js'));
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 //modulo para traducir los errores
-const trans = require('./lib/translate'); 
+const trans = require('./lib/translate');
 
 //custom error handler
-app.use(function(err, req, res, next) {
-  console.log("REsponse: ", err.status);
-  let errorMsg = err.message;
-  //Si es un error custom y el lang fue enviado en las cabeceras o en el query string, entonces lo traducimos y mandamos como mensaje de error
-  //Si el lang no es envíado, usamos español por defecto
-  if (err.localizedKey) {
-      let lang = (req.headers.lang || req.query.lang) ? req.headers.lang || req.query.lang : 'es';
-      errorMsg = trans.translate(err.localizedKey, lang);
-  }
+app.use(function (err, req, res, next) {
+    let errorMsg = err.message;
+    //Si es un error custom y el lang fue enviado en las cabeceras o en el query string, entonces lo traducimos y mandamos como mensaje de error
+    //Si el lang no es envíado, usamos español por defecto
+    if (err.localizedKey) {
+        let lang = (req.headers.lang || req.query.lang) ? req.headers.lang || req.query.lang : 'es';
+        errorMsg = trans.translate(err.localizedKey, lang);
+    }
 
-  // set locals, only providing error in development
-  res.locals.message = errorMsg;
-  console.log("Error translated: ", errorMsg);
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = errorMsg;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var express = require('express');
 var router = express.Router();
@@ -25,13 +25,13 @@ router.post('/', (req, res, next) => {
         //Lo guardo en la base de datos
         usuario.save().then(usuarioGuardado => {
             res.status(200)
-                .send({ token: service.createToken(usuarioGuardado) })
+                .send({ token: service.createToken(usuarioGuardado) });
         }).catch(err => {
             next(err);
         });
     } else {
         const err = new Error();
-        err.localizedKey = "FIELD_MISSING";
+        err.localizedKey = 'FIELD_MISSING';
         err.status = 400;
         next(err);
     }
@@ -47,17 +47,17 @@ router.post('/authenticate', (req, res, next) => {
                 //Si existe el usuario y la contraseña es válida, mandamos un 200 junto con el token generado
                 if (user.password === passwd) {
                     res.status(200)
-                        .send({ token: service.createToken(user) })
+                        .send({ token: service.createToken(user) });
                 } else {
                     let err = new Error();
-                    err.localizedKey = "WRONG_PASSWORD"
+                    err.localizedKey = 'WRONG_PASSWORD';
                     err.status = 400;
                     next(err);
                 }
 
             } else {
-                const err = new Error("");
-                err.localizedKey = "USER_NOT_FOUND"
+                const err = new Error('');
+                err.localizedKey = 'USER_NOT_FOUND';
                 err.status = 404;
                 next(err);
             }
@@ -65,6 +65,6 @@ router.post('/authenticate', (req, res, next) => {
         }).catch(err => {
             next(err);
         });
-})
+});
 
 module.exports = router;

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const mongoose = require('mongoose');
 
@@ -45,7 +45,7 @@ anuncioSchema.statics.list = function (filtros, limit, start, sort, req) {
                 reject(err);
             });
     });
-}
+};
 
 //Método estático para listar los tags existentes en los anuncios
 anuncioSchema.statics.listTags = function () {
@@ -60,7 +60,7 @@ anuncioSchema.statics.listTags = function () {
                 reject(err);
             });
     });
-}
+};
 
 //Creo el modelo de Anuncio partiendo del Schema
 var Anuncio = mongoose.model('Anuncio', anuncioSchema);

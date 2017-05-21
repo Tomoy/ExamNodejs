@@ -1,7 +1,6 @@
-'use strict'
+'use strict';
 
 const fs = require('fs');
-
 
 function leerArchivo(rutaArchivo) {
 
