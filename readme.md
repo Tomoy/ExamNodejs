@@ -88,3 +88,9 @@ Los errores se devuelven en el siguiente formato:
   Por defecto los errores vienen en español, pero se pueden recibir en inglés también, hay que agregar un parámetro en la query string o en el header:
 
   `lang = en`
+
+ #### Validación del código
+ 
+ Para validar el código ejecutar el siguiente comando en la consola:
+
+ `$ ./node_modules/.bin/eslint <nombre del archivo> `
