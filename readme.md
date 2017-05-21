@@ -81,10 +81,10 @@ Los anuncios se pueden filtrar por:
 
 Los errores se devuelven en el siguiente formato:
 
-' Mensaje: Mensaje del error \n
-  Status: Código del error \n
+' Mensaje: Mensaje del error
+  Status: Código del error
   Stack: La pila del error '
 
   Por defecto los errores vienen en español, pero se pueden recibir en inglés también, hay que agregar un parámetro en la query string o en el header:
 
-  `lang = en
+  `lang = en`
