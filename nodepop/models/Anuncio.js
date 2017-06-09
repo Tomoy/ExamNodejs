@@ -4,11 +4,24 @@ const mongoose = require('mongoose');
 
 //Defino el Schema del modelo Anuncio
 const anuncioSchema = mongoose.Schema({
-    nombre: String,
-    esVenta: Boolean,
-    precio: Number,
-    urlFoto: String,
-    tags: [String]
+    nombre: {
+        type: String,
+        index: true
+    } ,
+    esVenta: {
+        type: Boolean,
+        index: true
+    } ,
+    precio: {
+        type: Number,
+        index: true
+    } ,
+    tags: {
+        type: [String],
+        index: true
+    },
+    urlFoto: String
+    
 });
 
 //Convierte la url relativa de la foto de los anuncios en url absoluta
