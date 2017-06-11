@@ -38,7 +38,9 @@ Arrancar la app:
 
 Para acceder a la api, hay que dirigirse a la siguiente url: 
 
-`http://localhost:3000/`
+`http://localhost:3000/` (local)
+
+`https://nodepop.tomasimoyano.com` (en el server)
 
 ### RUTAS DE LA API
 
