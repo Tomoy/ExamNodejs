@@ -5,12 +5,15 @@ Api escrita en nodejs con Express, mongoose y MongoDB para servir anuncios y man
 ### EJECUCIÓN EN SERVIDOR
 
 Para correr la api en el servidor, utilizar la siguiente url
+
 `https://nodepop.tomasimoyano.com`
 
 Para ver la web de bootstrap, dirigirse a la siguientes url
-`https://tomasimoyano.com`o `www.tomasimoyano.com`o a la siguiente ip fija: `52.200.111.130
+
+`https://tomasimoyano.com`o `www.tomasimoyano.com`o a la siguiente ip fija: `52.200.111.130`
 
 Para ver las imágenes de los productos, dirigirse a la siguiente url 
+
 `https://nodepop.tomasimoyano.com/images/anuncios/` ejemplo: `/iphone.png
 
 ### INSTALACION Y ARRANQUE
